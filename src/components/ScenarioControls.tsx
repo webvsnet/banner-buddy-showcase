@@ -63,40 +63,32 @@ const ScenarioControls = ({
             </div>
             
             <div className="space-y-6">
-              <div className="space-y-3 p-4 rounded-xl bg-gray-50 border border-gray-100">
-                <Label htmlFor="id-document" className="text-base font-medium text-gray-900">ID Document Status</Label>
-                <Select
-                  value={scenario1Data.hasIdDocument ? "present" : "missing"}
-                  onValueChange={(value) =>
-                    onScenario1Change({ ...scenario1Data, hasIdDocument: value === "present" })
+              <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
+                <div className="space-y-1">
+                  <Label htmlFor="id-document" className="text-base font-medium text-gray-900">ID Document Present</Label>
+                  <p className="text-sm text-gray-500">Identity document is available</p>
+                </div>
+                <Switch
+                  id="id-document"
+                  checked={scenario1Data.hasIdDocument}
+                  onCheckedChange={(checked) =>
+                    onScenario1Change({ ...scenario1Data, hasIdDocument: checked })
                   }
-                >
-                  <SelectTrigger className="border-gray-200 rounded-xl focus:border-gray-400 focus:ring-0">
-                    <SelectValue placeholder="Select document status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="present">Present</SelectItem>
-                    <SelectItem value="missing">Missing</SelectItem>
-                  </SelectContent>
-                </Select>
+                />
               </div>
 
-              <div className="space-y-3 p-4 rounded-xl bg-gray-50 border border-gray-100">
-                <Label htmlFor="signature" className="text-base font-medium text-gray-900">Specimen Signature Status</Label>
-                <Select
-                  value={scenario1Data.hasSignature ? "present" : "missing"}
-                  onValueChange={(value) =>
-                    onScenario1Change({ ...scenario1Data, hasSignature: value === "present" })
+              <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
+                <div className="space-y-1">
+                  <Label htmlFor="signature" className="text-base font-medium text-gray-900">Specimen Signature Present</Label>
+                  <p className="text-sm text-gray-500">Signature specimen is available</p>
+                </div>
+                <Switch
+                  id="signature"
+                  checked={scenario1Data.hasSignature}
+                  onCheckedChange={(checked) =>
+                    onScenario1Change({ ...scenario1Data, hasSignature: checked })
                   }
-                >
-                  <SelectTrigger className="border-gray-200 rounded-xl focus:border-gray-400 focus:ring-0">
-                    <SelectValue placeholder="Select signature status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="present">Present</SelectItem>
-                    <SelectItem value="missing">Missing</SelectItem>
-                  </SelectContent>
-                </Select>
+                />
               </div>
             </div>
           </div>

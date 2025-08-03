@@ -11,26 +11,26 @@ const Banner = ({ type, message, show }: BannerProps) => {
   const getIcon = () => {
     switch (type) {
       case 'warning':
-        return <AlertTriangle className="h-4 w-4" />;
+        return <AlertTriangle className="h-6 w-6" />;
       case 'info':
-        return <Info className="h-4 w-4" />;
+        return <Info className="h-6 w-6" />;
       case 'error':
-        return <User className="h-4 w-4" />;
+        return <User className="h-6 w-6" />;
       default:
-        return <Info className="h-4 w-4" />;
+        return <Info className="h-6 w-6" />;
     }
   };
 
   const getBannerStyles = () => {
     switch (type) {
       case 'warning':
-        return "bg-amber-50 text-amber-800 border-amber-200";
+        return "bg-amber-100 text-amber-900 border-amber-300 shadow-lg";
       case 'info':
-        return "bg-blue-50 text-blue-800 border-blue-200";
+        return "bg-blue-100 text-blue-900 border-blue-300 shadow-lg";
       case 'error':
-        return "bg-red-50 text-red-800 border-red-200";
+        return "bg-red-100 text-red-900 border-red-300 shadow-lg";
       default:
-        return "bg-blue-50 text-blue-800 border-blue-200";
+        return "bg-blue-100 text-blue-900 border-blue-300 shadow-lg";
     }
   };
 
@@ -39,12 +39,12 @@ const Banner = ({ type, message, show }: BannerProps) => {
   return (
     <div 
       className={cn(
-        "border rounded-xl px-4 py-3 flex items-center gap-3 shadow-sm animate-fade-in transition-all duration-200",
+        "border-2 rounded-xl px-6 py-4 flex items-center gap-4 animate-fade-in transition-all duration-200 font-semibold text-lg",
         getBannerStyles()
       )}
     >
       {getIcon()}
-      <span className="font-medium text-sm">{message}</span>
+      <span className="font-bold">{message}</span>
     </div>
   );
 };

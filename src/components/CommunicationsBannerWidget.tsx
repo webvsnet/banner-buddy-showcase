@@ -83,7 +83,10 @@ const CommunicationsBannerWidget = () => {
     <div className="max-w-5xl mx-auto px-6 py-12 space-y-12">
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold text-gray-900">
-          CueBot ⭐
+          CueBot ✨
+        </h1>
+        <p className="text-sm text-gray-500 font-medium">
+          built by Ian Eyono
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Automated banner system for identity verification, age validation, and authorization management in Appian

@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Banner from "./Banner";
 import ScenarioControls from "./ScenarioControls";
-import { FileText, Calendar, Users } from "lucide-react";
+import { FileText, Calendar, Users, Eye } from "lucide-react";
 
 interface Scenario1Data {
   hasIdDocument: boolean;
@@ -133,7 +133,7 @@ const CommunicationsBannerWidget = () => {
 
         {/* Scenario Selection and Controls */}
         <Tabs value={activeScenario} onValueChange={setActiveScenario} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-white border border-gray-200 rounded-xl p-1 h-auto shadow-sm">
+          <TabsList className="grid w-full grid-cols-4 bg-white border border-gray-200 rounded-xl p-1 h-auto shadow-sm">
             <TabsTrigger 
               value="1" 
               className="flex items-center gap-3 px-6 py-4 text-sm font-medium rounded-lg data-[state=active]:bg-gray-900 data-[state=active]:text-white transition-all"
@@ -154,6 +154,13 @@ const CommunicationsBannerWidget = () => {
             >
               <Users className="h-4 w-4" />
               Authorized Rep
+            </TabsTrigger>
+            <TabsTrigger 
+              value="all" 
+              className="flex items-center gap-3 px-6 py-4 text-sm font-medium rounded-lg data-[state=active]:bg-gray-900 data-[state=active]:text-white transition-all"
+            >
+              <Eye className="h-4 w-4" />
+              All Banners
             </TabsTrigger>
           </TabsList>
 
@@ -192,12 +199,74 @@ const CommunicationsBannerWidget = () => {
               onScenario3Change={setScenario3Data}
             />
           </TabsContent>
+
+          <TabsContent value="all" className="mt-8">
+            <Card className="p-8 bg-white border border-gray-200 shadow-sm rounded-2xl">
+              <div className="space-y-6">
+                <div className="pb-4">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">All Banners Preview</h3>
+                  <p className="text-sm text-gray-600">View how all banners appear when their conditions are met</p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-700 mb-2">Identity Documents Banner</h4>
+                    <Banner
+                      type="warning"
+                      message="O/S ID document and specimen signature"
+                      show={shouldShowScenario1Banner()}
+                    />
+                    {!shouldShowScenario1Banner() && (
+                      <div className="text-center text-gray-400 italic py-4 border border-dashed border-gray-200 rounded-xl">
+                        Banner hidden - all documents present
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-700 mb-2">Minor Account Banner</h4>
+                    <Banner
+                      type="info"
+                      message="This is a Minor Account"
+                      show={shouldShowScenario2Banner()}
+                    />
+                    {!shouldShowScenario2Banner() && (
+                      <div className="text-center text-gray-400 italic py-4 border border-dashed border-gray-200 rounded-xl">
+                        Banner hidden - not a minor account
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-700 mb-2">Authorized Representative Banner</h4>
+                    <Banner
+                      type="info"
+                      message={getScenario3Message()}
+                      show={shouldShowScenario3Banner()}
+                    />
+                    {!shouldShowScenario3Banner() && (
+                      <div className="text-center text-gray-400 italic py-4 border border-dashed border-gray-200 rounded-xl">
+                        Banner hidden - no authorized representative configured
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-200">
+                  <p className="text-sm text-blue-800">
+                    <strong>Note:</strong> Configure the individual scenarios in their respective tabs to see the banners appear here. 
+                    This view shows how multiple banners would stack when their conditions are simultaneously met.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </TabsContent>
         </Tabs>
       </div>
 
       {/* Status Summary */}
       <Card className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
           <div className="space-y-2">
             <div className="text-lg font-semibold text-gray-900">Identity Documents</div>
             <div className={`text-sm px-3 py-1 rounded-full inline-block ${
@@ -226,6 +295,16 @@ const CommunicationsBannerWidget = () => {
                 : 'bg-gray-100 text-gray-600'
             }`}>
               {shouldShowScenario3Banner() ? 'Banner Active' : 'No Banner'}
+            </div>
+          </div>
+          <div className="space-y-2">
+            <div className="text-lg font-semibold text-gray-900">All Banners</div>
+            <div className={`text-sm px-3 py-1 rounded-full inline-block ${
+              (shouldShowScenario1Banner() || shouldShowScenario2Banner() || shouldShowScenario3Banner())
+                ? 'bg-green-100 text-green-800' 
+                : 'bg-gray-100 text-gray-600'
+            }`}>
+              {(shouldShowScenario1Banner() || shouldShowScenario2Banner() || shouldShowScenario3Banner()) ? 'Active Banners' : 'No Active Banners'}
             </div>
           </div>
         </div>

@@ -89,7 +89,7 @@ const CommunicationsBannerWidget = () => {
           built by Ian Eyono
         </p>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Automated banner system for identity verification, age validation, and authorization management in Appian
+          Automated Appian Alerts
         </p>
       </div>
 

@@ -58,7 +58,7 @@ const ScenarioControls = ({
         {scenario === 1 && (
           <div className="space-y-6">
             <div className="pb-4">
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Identity Documents</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Identify Split Identity Documents</h3>
               <p className="text-sm text-gray-600">Toggle document availability to test banner display</p>
             </div>
             

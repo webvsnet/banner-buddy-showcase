@@ -80,20 +80,20 @@ const CommunicationsBannerWidget = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+    <div className="max-w-5xl mx-auto px-6 py-12 space-y-12">
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl font-bold text-gray-900">
           Communications Banner Widget
         </h1>
-        <p className="text-banking-gray">
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Automated banner system for identity verification, age validation, and authorization management
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-8">
         {/* Banner Display Area */}
-        <Card className="p-6 bg-banking-gray-light/30 border-dashed min-h-[80px] flex items-center justify-center">
-          <div className="w-full max-w-2xl">
+        <Card className="p-8 bg-gray-50 border border-gray-200 rounded-2xl min-h-[120px] flex items-center justify-center">
+          <div className="w-full max-w-3xl">
             {activeScenario === "1" && (
               <Banner
                 type="warning"
@@ -121,7 +121,7 @@ const CommunicationsBannerWidget = () => {
             {((activeScenario === "1" && !shouldShowScenario1Banner()) ||
               (activeScenario === "2" && !shouldShowScenario2Banner()) ||
               (activeScenario === "3" && !shouldShowScenario3Banner())) && (
-              <div className="text-center text-banking-gray italic">
+              <div className="text-center text-gray-500 italic font-medium">
                 No banner to display - conditions not met
               </div>
             )}
@@ -130,22 +130,31 @@ const CommunicationsBannerWidget = () => {
 
         {/* Scenario Selection and Controls */}
         <Tabs value={activeScenario} onValueChange={setActiveScenario} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-banking-blue-light">
-            <TabsTrigger value="1" className="flex items-center gap-2">
+          <TabsList className="grid w-full grid-cols-3 bg-white border border-gray-200 rounded-xl p-1 h-auto shadow-sm">
+            <TabsTrigger 
+              value="1" 
+              className="flex items-center gap-3 px-6 py-4 text-sm font-medium rounded-lg data-[state=active]:bg-gray-900 data-[state=active]:text-white transition-all"
+            >
               <FileText className="h-4 w-4" />
-              Identity Docs
+              Identity Documents
             </TabsTrigger>
-            <TabsTrigger value="2" className="flex items-center gap-2">
+            <TabsTrigger 
+              value="2" 
+              className="flex items-center gap-3 px-6 py-4 text-sm font-medium rounded-lg data-[state=active]:bg-gray-900 data-[state=active]:text-white transition-all"
+            >
               <Calendar className="h-4 w-4" />
               Minor Account
             </TabsTrigger>
-            <TabsTrigger value="3" className="flex items-center gap-2">
+            <TabsTrigger 
+              value="3" 
+              className="flex items-center gap-3 px-6 py-4 text-sm font-medium rounded-lg data-[state=active]:bg-gray-900 data-[state=active]:text-white transition-all"
+            >
               <Users className="h-4 w-4" />
-              Auth Representative
+              Authorized Rep
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="1" className="mt-4">
+          <TabsContent value="1" className="mt-8">
             <ScenarioControls
               scenario={1}
               scenario1Data={scenario1Data}
@@ -157,7 +166,7 @@ const CommunicationsBannerWidget = () => {
             />
           </TabsContent>
 
-          <TabsContent value="2" className="mt-4">
+          <TabsContent value="2" className="mt-8">
             <ScenarioControls
               scenario={2}
               scenario1Data={scenario1Data}
@@ -169,7 +178,7 @@ const CommunicationsBannerWidget = () => {
             />
           </TabsContent>
 
-          <TabsContent value="3" className="mt-4">
+          <TabsContent value="3" className="mt-8">
             <ScenarioControls
               scenario={3}
               scenario1Data={scenario1Data}
@@ -183,24 +192,36 @@ const CommunicationsBannerWidget = () => {
         </Tabs>
       </div>
 
-      {/* Status Information */}
-      <Card className="p-4 bg-banking-blue-light/50">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div className="text-center">
-            <div className="font-medium text-banking-blue">Scenario 1</div>
-            <div className={`text-xs ${shouldShowScenario1Banner() ? 'text-warning' : 'text-banking-gray'}`}>
+      {/* Status Summary */}
+      <Card className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div className="space-y-2">
+            <div className="text-lg font-semibold text-gray-900">Identity Documents</div>
+            <div className={`text-sm px-3 py-1 rounded-full inline-block ${
+              shouldShowScenario1Banner() 
+                ? 'bg-amber-100 text-amber-800' 
+                : 'bg-gray-100 text-gray-600'
+            }`}>
               {shouldShowScenario1Banner() ? 'Banner Active' : 'No Banner'}
             </div>
           </div>
-          <div className="text-center">
-            <div className="font-medium text-banking-blue">Scenario 2</div>
-            <div className={`text-xs ${shouldShowScenario2Banner() ? 'text-info' : 'text-banking-gray'}`}>
+          <div className="space-y-2">
+            <div className="text-lg font-semibold text-gray-900">Minor Account</div>
+            <div className={`text-sm px-3 py-1 rounded-full inline-block ${
+              shouldShowScenario2Banner() 
+                ? 'bg-blue-100 text-blue-800' 
+                : 'bg-gray-100 text-gray-600'
+            }`}>
               {shouldShowScenario2Banner() ? 'Banner Active' : 'No Banner'}
             </div>
           </div>
-          <div className="text-center">
-            <div className="font-medium text-banking-blue">Scenario 3</div>
-            <div className={`text-xs ${shouldShowScenario3Banner() ? 'text-info' : 'text-banking-gray'}`}>
+          <div className="space-y-2">
+            <div className="text-lg font-semibold text-gray-900">Authorized Rep</div>
+            <div className={`text-sm px-3 py-1 rounded-full inline-block ${
+              shouldShowScenario3Banner() 
+                ? 'bg-blue-100 text-blue-800' 
+                : 'bg-gray-100 text-gray-600'
+            }`}>
               {shouldShowScenario3Banner() ? 'Banner Active' : 'No Banner'}
             </div>
           </div>

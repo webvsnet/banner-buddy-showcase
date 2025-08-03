@@ -53,20 +53,20 @@ const ScenarioControls = ({
   };
 
   return (
-    <Card className="p-6 bg-gradient-card border shadow-medium">
-      <div className="space-y-6">
+    <Card className="p-8 bg-white border border-gray-200 shadow-sm rounded-2xl">
+      <div className="space-y-8">
         {scenario === 1 && (
-          <div className="space-y-4">
-            <div className="border-b pb-2">
-              <h3 className="text-lg font-semibold text-banking-blue">Identity Documents</h3>
-              <p className="text-sm text-banking-gray">Toggle document availability to test banner display</p>
+          <div className="space-y-6">
+            <div className="pb-4">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Identity Documents</h3>
+              <p className="text-sm text-gray-600">Toggle document availability to test banner display</p>
             </div>
             
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
                 <div className="space-y-1">
-                  <Label htmlFor="id-document">ID Document Present</Label>
-                  <p className="text-xs text-banking-gray">Identity document is available</p>
+                  <Label htmlFor="id-document" className="text-base font-medium text-gray-900">ID Document Present</Label>
+                  <p className="text-sm text-gray-500">Identity document is available</p>
                 </div>
                 <Switch
                   id="id-document"
@@ -77,10 +77,10 @@ const ScenarioControls = ({
                 />
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
                 <div className="space-y-1">
-                  <Label htmlFor="signature">Specimen Signature Present</Label>
-                  <p className="text-xs text-banking-gray">Signature specimen is available</p>
+                  <Label htmlFor="signature" className="text-base font-medium text-gray-900">Specimen Signature Present</Label>
+                  <p className="text-sm text-gray-500">Signature specimen is available</p>
                 </div>
                 <Switch
                   id="signature"
@@ -95,14 +95,14 @@ const ScenarioControls = ({
         )}
 
         {scenario === 2 && (
-          <div className="space-y-4">
-            <div className="border-b pb-2">
-              <h3 className="text-lg font-semibold text-banking-blue">Client Age Verification</h3>
-              <p className="text-sm text-banking-gray">Enter birth date to test minor account detection</p>
+          <div className="space-y-6">
+            <div className="pb-4">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Client Age Verification</h3>
+              <p className="text-sm text-gray-600">Enter birth date to test minor account detection</p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="birth-date">Birth Date</Label>
+            <div className="space-y-4 p-4 rounded-xl bg-gray-50 border border-gray-100">
+              <Label htmlFor="birth-date" className="text-base font-medium text-gray-900">Birth Date</Label>
               <Input
                 id="birth-date"
                 type="date"
@@ -110,10 +110,10 @@ const ScenarioControls = ({
                 onChange={(e) =>
                   onScenario2Change({ ...scenario2Data, birthDate: e.target.value })
                 }
-                className="max-w-xs"
+                className="max-w-sm border-gray-200 rounded-xl focus:border-gray-400 focus:ring-0"
               />
               {scenario2Data.birthDate && (
-                <p className="text-xs text-banking-gray">
+                <p className="text-sm text-gray-500 mt-2">
                   Current age: {calculateAge(scenario2Data.birthDate)} years
                 </p>
               )}
@@ -122,17 +122,17 @@ const ScenarioControls = ({
         )}
 
         {scenario === 3 && (
-          <div className="space-y-4">
-            <div className="border-b pb-2">
-              <h3 className="text-lg font-semibold text-banking-blue">Authorised Representative</h3>
-              <p className="text-sm text-banking-gray">Configure authorized person details</p>
+          <div className="space-y-6">
+            <div className="pb-4">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Authorised Representative</h3>
+              <p className="text-sm text-gray-600">Configure authorized person details</p>
             </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
                 <div className="space-y-1">
-                  <Label htmlFor="auth-enabled">Enable Authorisation</Label>
-                  <p className="text-xs text-banking-gray">Allow authorized representative access</p>
+                  <Label htmlFor="auth-enabled" className="text-base font-medium text-gray-900">Enable Authorisation</Label>
+                  <p className="text-sm text-gray-500">Allow authorized representative access</p>
                 </div>
                 <Switch
                   id="auth-enabled"
@@ -144,17 +144,17 @@ const ScenarioControls = ({
               </div>
 
               {scenario3Data.isAuthEnabled && (
-                <div className="space-y-4 pl-4 border-l-2 border-banking-blue/20">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="rep-title">Title</Label>
+                <div className="space-y-6 p-6 border border-gray-200 rounded-xl bg-white">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-3">
+                      <Label htmlFor="rep-title" className="text-sm font-medium text-gray-900">Title</Label>
                       <Select
                         value={scenario3Data.repTitle}
                         onValueChange={(value) =>
                           onScenario3Change({ ...scenario3Data, repTitle: value })
                         }
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="border-gray-200 rounded-xl focus:border-gray-400 focus:ring-0">
                           <SelectValue placeholder="Select title" />
                         </SelectTrigger>
                         <SelectContent>
@@ -166,8 +166,8 @@ const ScenarioControls = ({
                       </Select>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="rep-name">Full Name</Label>
+                    <div className="space-y-3">
+                      <Label htmlFor="rep-name" className="text-sm font-medium text-gray-900">Full Name</Label>
                       <Input
                         id="rep-name"
                         value={scenario3Data.repName}
@@ -175,13 +175,14 @@ const ScenarioControls = ({
                           onScenario3Change({ ...scenario3Data, repName: e.target.value })
                         }
                         placeholder="John Doe"
+                        className="border-gray-200 rounded-xl focus:border-gray-400 focus:ring-0"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="rep-id">ID Number</Label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-3">
+                      <Label htmlFor="rep-id" className="text-sm font-medium text-gray-900">ID Number</Label>
                       <Input
                         id="rep-id"
                         value={scenario3Data.repId}
@@ -189,18 +190,19 @@ const ScenarioControls = ({
                           onScenario3Change({ ...scenario3Data, repId: e.target.value })
                         }
                         placeholder="123456789"
+                        className="border-gray-200 rounded-xl focus:border-gray-400 focus:ring-0"
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="rep-relationship">Relationship</Label>
+                    <div className="space-y-3">
+                      <Label htmlFor="rep-relationship" className="text-sm font-medium text-gray-900">Relationship</Label>
                       <Select
                         value={scenario3Data.repRelationship}
                         onValueChange={(value) =>
                           onScenario3Change({ ...scenario3Data, repRelationship: value })
                         }
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="border-gray-200 rounded-xl focus:border-gray-400 focus:ring-0">
                           <SelectValue placeholder="Select relationship" />
                         </SelectTrigger>
                         <SelectContent>

@@ -24,13 +24,13 @@ const Banner = ({ type, message, show }: BannerProps) => {
   const getBannerStyles = () => {
     switch (type) {
       case 'warning':
-        return "bg-warning text-warning-foreground border-warning/20";
+        return "bg-amber-50 text-amber-800 border-amber-200";
       case 'info':
-        return "bg-info text-info-foreground border-info/20";
+        return "bg-blue-50 text-blue-800 border-blue-200";
       case 'error':
-        return "bg-destructive text-destructive-foreground border-destructive/20";
+        return "bg-red-50 text-red-800 border-red-200";
       default:
-        return "bg-info text-info-foreground border-info/20";
+        return "bg-blue-50 text-blue-800 border-blue-200";
     }
   };
 
@@ -39,7 +39,7 @@ const Banner = ({ type, message, show }: BannerProps) => {
   return (
     <div 
       className={cn(
-        "border rounded-lg p-4 flex items-center gap-3 shadow-soft animate-slide-in transition-all duration-300",
+        "border rounded-xl px-4 py-3 flex items-center gap-3 shadow-sm animate-fade-in transition-all duration-200",
         getBannerStyles()
       )}
     >
